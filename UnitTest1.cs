@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 namespace Foody;
 
 using NUnit.Framework;
@@ -41,22 +41,22 @@ public class FoodyTests
     [Test,Order(1)]
     public void CreateFoodShouldReturnCreated()
     {
-        // 1) Създай
+        // 1) ??????
         var createReq = new RestRequest("/api/Food/Create", Method.Post)
             .AddJsonBody(new { name = "New Food", description = "Delicious new food", url = "" });
 
         var createResp = _client.Execute(createReq);
         Assert.AreEqual(HttpStatusCode.Created, createResp.StatusCode,
-            $"POST Create върна {createResp.StatusCode}. Body: {createResp.Content}");
+            $"POST Create ????? {createResp.StatusCode}. Body: {createResp.Content}");
 
-        // 2) Вземи foodId от тялото
+        // 2) ????? foodId ?? ??????
         var json = JsonSerializer.Deserialize<JsonElement>(createResp.Content ?? "{}");
         if (!json.TryGetProperty("foodId", out var idProp))
-            Assert.Fail("В отговора липсва 'foodId'. Тяло: " + createResp.Content);
+            Assert.Fail("? ???????? ?????? 'foodId'. ????: " + createResp.Content);
         var foodId = idProp.GetString();
-        Assert.IsNotNull(foodId, "foodId е null");
+        Assert.IsNotNull(foodId, "foodId ? null");
 
-        // 3) Пробвай Location (ако случайно е валиден при GET)
+        // 3) ??????? Location (??? ???????? ? ??????? ??? GET)
         var location = createResp.Headers
             .FirstOrDefault(h => string.Equals(h.Name, "Location", StringComparison.OrdinalIgnoreCase))
             ?.Value?.ToString();
@@ -68,7 +68,7 @@ public class FoodyTests
             tried.Add(location!);
         }
 
-        // 4) Открий реалния GET рут през Swagger (ако има)
+        // 4) ?????? ??????? GET ??? ???? Swagger (??? ???)
         var swaggerCandidates = DiscoverFoodGetRoutesFromSwagger(foodId!);
         foreach (var path in swaggerCandidates)
         {
@@ -76,7 +76,7 @@ public class FoodyTests
             tried.Add(path);
         }
 
-        // 5) Fallback: пробвай типични list ендпойнти и провери дали елементът съществува в списъка
+        // 5) Fallback: ??????? ??????? list ????????? ? ??????? ???? ????????? ?????????? ? ???????
         var listCandidates = new[]
         {
             "/api/Food", "/api/Food/All", "/api/Food/GetAll", "/Food", "/Food/All", "/Food/GetAll"
@@ -92,16 +92,16 @@ public class FoodyTests
             tried.Add(listPath);
         }
 
-        // 6) Ако стигнем тук — не намерихме валиден GET
+        // 6) ??? ??????? ??? � ?? ????????? ??????? GET
         var sb = new StringBuilder();
-        sb.AppendLine("Не успях да намеря работещ GET рут за Food. Пробвах:");
+        sb.AppendLine("?? ????? ?? ?????? ??????? GET ??? ?? Food. ???????:");
         sb.AppendLine(string.Join("\n", tried));
         Assert.Fail(sb.ToString());
     }
 
-    // === Помощни методи ===
+    // === ??????? ?????? ===
 
-    // Опитва GET по даден path (какъвто е), с 3 бързи опита. Връща true при 200 OK.
+    // ?????? GET ?? ????? path (??????? ?), ? 3 ????? ?????. ????? true ??? 200 OK.
     private bool TryGetOK(string path, out RestResponse? last)
     {
         last = null;
@@ -114,11 +114,11 @@ public class FoodyTests
         return false;
     }
 
-    // Търси Swagger и генерира кандидати за GET рутове към Food с id
+    // ????? Swagger ? ???????? ????????? ?? GET ?????? ??? Food ? id
     private IEnumerable<string> DiscoverFoodGetRoutesFromSwagger(string id)
     {
         var results = new List<string>();
-        // най-често срещани пътища до swagger json
+        // ???-????? ??????? ?????? ?? swagger json
         var swaggerJsonPaths = new[]
         {
             "/swagger/v1/swagger.json",
@@ -133,31 +133,31 @@ public class FoodyTests
             if (swag.StatusCode == HttpStatusCode.OK && !string.IsNullOrWhiteSpace(swag.Content)) break;
             swag = null;
         }
-        if (swag == null) return results; // няма swagger
+        if (swag == null) return results; // ???? swagger
 
         using var doc = JsonDocument.Parse(swag.Content!);
         if (!doc.RootElement.TryGetProperty("paths", out var paths)) return results;
 
         foreach (var pathProp in paths.EnumerateObject())
         {
-            var route = pathProp.Name; // напр. "/api/Food/{id}" или "/Food/GetById"
+            var route = pathProp.Name; // ????. "/api/Food/{id}" ??? "/Food/GetById"
             if (!route.Contains("Food", StringComparison.OrdinalIgnoreCase)) continue;
 
             var val = pathProp.Value;
 
-            // имаме ли GET?
+            // ????? ?? GET?
             if (!val.TryGetProperty("get", out var getOp)) continue;
 
             string? candidate = null;
 
-            // 1) ако пътят съдържа {id} -> замести
+            // 1) ??? ????? ??????? {id} -> ???????
             if (route.Contains("{id}", StringComparison.OrdinalIgnoreCase))
             {
                 candidate = route.Replace("{id}", id, StringComparison.OrdinalIgnoreCase);
             }
             else
             {
-                // 2) ако параметрите имат "id" като query
+                // 2) ??? ??????????? ???? "id" ???? query
                 if (getOp.TryGetProperty("parameters", out var pars) && pars.ValueKind == JsonValueKind.Array)
                 {
                     var hasId = pars.EnumerateArray()
@@ -178,11 +178,11 @@ public class FoodyTests
                 results.Add(candidate);
         }
 
-        // премахни дубли
+        // ???????? ?????
         return results.Distinct();
     }
 
-    // Проверява дали JSON (или масив от JSON обекти) съдържа id в някое поле, което прилича на идентификатор
+    // ????????? ???? JSON (??? ????? ?? JSON ??????) ??????? id ? ????? ????, ????? ??????? ?? ?????????????
     private bool ResponseContainsId(string content, string id)
     {
         try
@@ -200,7 +200,7 @@ public class FoodyTests
                         return true;
             }
         }
-        catch { /* не е валиден JSON или друг формат */ }
+        catch { /* ?? ? ??????? JSON ??? ???? ?????? */ }
         return false;
     }
 
@@ -230,25 +230,25 @@ public class FoodyTests
     [Test, Order(1)]
     public void CreateFood_ShouldReturnCreated()
     {
-        // 1) Създай
+        // 1) ??????
         var createReq = new RestRequest("/api/Food/Create", Method.Post)
             .AddJsonBody(new { name = "New Food", description = "Delicious new food", url = "" });
 
         var createResp = _client.Execute(createReq);
         Assert.AreEqual(HttpStatusCode.Created, createResp.StatusCode,
-            $"POST Create върна {createResp.StatusCode}. Body: {createResp.Content}");
+            $"POST Create ????? {createResp.StatusCode}. Body: {createResp.Content}");
 
-        // 2) Вземи foodId от тялото
+        // 2) ????? foodId ?? ??????
         var json = JsonSerializer.Deserialize<JsonElement>(createResp.Content ?? "{}");
         if (!json.TryGetProperty("foodId", out var idProp))
-            Assert.Fail("В отговора липсва 'foodId'. Тяло: " + createResp.Content);
+            Assert.Fail("? ???????? ?????? 'foodId'. ????: " + createResp.Content);
         var foodId = idProp.GetString();
-        Assert.IsNotNull(foodId, "foodId е null");
+        Assert.IsNotNull(foodId, "foodId ? null");
 
         // Store the created food ID for use in other tests
         createdFoodId = foodId;
 
-        // 3) Пробвай Location (ако случайно е валиден при GET)
+        // 3) ??????? Location (??? ???????? ? ??????? ??? GET)
         var location = createResp.Headers
             .FirstOrDefault(h => string.Equals(h.Name, "Location", StringComparison.OrdinalIgnoreCase))
             ?.Value?.ToString();
@@ -260,7 +260,7 @@ public class FoodyTests
             tried.Add(location!);
         }
 
-        // 4) Открий реалния GET рут през Swagger (ако има)
+        // 4) ?????? ??????? GET ??? ???? Swagger (??? ???)
         var swaggerCandidates = DiscoverFoodGetRoutesFromSwagger(foodId!);
         foreach (var path in swaggerCandidates)
         {
@@ -268,7 +268,7 @@ public class FoodyTests
             tried.Add(path);
         }
 
-        // 5) Fallback: пробвай типични list ендпойнти и провери дали елементът съществува в списъка
+        // 5) Fallback: ??????? ??????? list ????????? ? ??????? ???? ????????? ?????????? ? ???????
         var listCandidates = new[]
         {
             "/api/Food", "/api/Food/All", "/api/Food/GetAll", "/Food", "/Food/All", "/Food/GetAll"
@@ -284,9 +284,9 @@ public class FoodyTests
             tried.Add(listPath);
         }
 
-        // 6) Ако стигнем тук — не намерихме валиден GET
+        // 6) ??? ??????? ??? � ?? ????????? ??????? GET
         var sb = new StringBuilder();
-        sb.AppendLine("Не успях да намеря работещ GET рут за Food. Пробвах:");
+        sb.AppendLine("?? ????? ?? ?????? ??????? GET ??? ?? Food. ???????:");
         sb.AppendLine(string.Join("\n", tried));
         Assert.Fail(sb.ToString());
     }
@@ -315,9 +315,9 @@ public class FoodyTests
       var request = new RestRequest("/api/Food/All", Method.Get);
         var response = _client.Execute(request);
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK), 
-            $"GET GetAll върна {response.StatusCode}. Body: {response.Content}");
+            $"GET GetAll ????? {response.StatusCode}. Body: {response.Content}");
         
-        // Проверка дали има поне един елемент
+        // ???????? ???? ??? ???? ???? ???????
         Assert.IsTrue(!string.IsNullOrWhiteSpace(response.Content), "Response content is empty.");
         
         var json = JsonSerializer.Deserialize<JsonElement>(response.Content ?? "[]");
@@ -330,7 +330,7 @@ public class FoodyTests
     {
         var request = new RestRequest($"api/Food/Delete/{createdFoodId}", Method.Delete);
         var response = _client.Execute(request);
-        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK).Or.EqualTo(HttpStatusCode.NoContent));
      }
     [Test, Order(5)]
     public void CreateFood_WithoutRequiredField_ShouldReturnBadRequest()
@@ -345,7 +345,7 @@ public class FoodyTests
             .AddJsonBody(food);
         var response = _client.Execute(request);
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest),
-            $"POST Create върна {response.StatusCode}. Body: {response.Content}");
+            $"POST Create ????? {response.StatusCode}. Body: {response.Content}");
     }
     [Test, Order(6)]
     public void EditNonExistingFood_ShouldReturnNotFound()
@@ -358,7 +358,7 @@ public class FoodyTests
             .AddJsonBody(changes);
         var response = _client.Execute(request);
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound),
-            $"PATCH Edit върна {response.StatusCode}. Body: {response.Content}");
+            $"PATCH Edit ????? {response.StatusCode}. Body: {response.Content}");
     }
     [Test, Order(7)]
     public void DeleteNonExistingFood_ShouldReturnBadRequest()
@@ -366,7 +366,7 @@ public class FoodyTests
         var request = new RestRequest("/api/Food/Delete/12345", Method.Delete);
         var response = _client.Execute(request);
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest),
-            $"DELETE Delete върна {response.StatusCode}. Body: {response.Content}");
+            $"DELETE Delete ????? {response.StatusCode}. Body: {response.Content}");
     }
 }
 

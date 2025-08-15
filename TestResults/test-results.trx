@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="a708af32-b17c-4891-8d64-cd33cd14a021" name="esung@LAPTOP-GBMS4CB3 2025-08-15 15:06:44" runUser="LAPTOP-GBMS4CB3\esung" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-15T15:06:44.1619911+03:00" queuing="2025-08-15T15:06:44.1619914+03:00" start="2025-08-15T15:06:40.7333889+03:00" finish="2025-08-15T15:06:44.6238573+03:00" />
+  <TestSettings name="default" id="b6c79e33-58bc-4deb-bd05-d9428fa0de6e">
+    <Deployment runDeploymentRoot="esung_LAPTOP-GBMS4CB3_2025-08-15_15_06_44" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="6d602f36-a8e5-43a0-ac42-3c0c8972535b" testId="20fdbd80-457e-63ff-659a-22141c78437c" testName="CreateFood_WithoutRequiredField_ShouldReturnBadRequest" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.0734979" startTime="2025-08-15T15:06:44.3085111+03:00" endTime="2025-08-15T15:06:44.3820091+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d602f36-a8e5-43a0-ac42-3c0c8972535b" />
+    <UnitTestResult executionId="e3754a8d-0b34-4c2e-ab64-e0f4206625ba" testId="61be1564-71aa-5e42-131f-0ad111f9aea1" testName="DeleteNonExistingFood_ShouldReturnBadRequest" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.0858960" startTime="2025-08-15T15:06:44.4628481+03:00" endTime="2025-08-15T15:06:44.5487432+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e3754a8d-0b34-4c2e-ab64-e0f4206625ba" />
+    <UnitTestResult executionId="a76041ce-3752-43b3-9780-85696f473b84" testId="8fdbe4df-8ccf-ef43-3240-0282c70f083b" testName="DeleteFood_ShouldReturnNoContent" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.1105780" startTime="2025-08-15T15:06:44.1978361+03:00" endTime="2025-08-15T15:06:44.3084129+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a76041ce-3752-43b3-9780-85696f473b84">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: NotFound&#xD;
+  But was:  OK&#xD;
+</Message>
+          <StackTrace>   at Foody.FoodyTests.DeleteFood_ShouldReturnNoContent() in C:\Users\esung\source\repos\Foody-clean\UnitTest1.cs:line 333&#xD;
+
+1)    at Foody.FoodyTests.DeleteFood_ShouldReturnNoContent() in C:\Users\esung\source\repos\Foody-clean\UnitTest1.cs:line 333&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8b99102a-a888-4793-bee3-248f95814b9e" testId="3f8150a7-1274-60e8-73c7-b3c0f7044cd0" testName="GetAllFoods_ShouldReturnOk" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.0793760" startTime="2025-08-15T15:06:44.1184341+03:00" endTime="2025-08-15T15:06:44.1978092+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b99102a-a888-4793-bee3-248f95814b9e" />
+    <UnitTestResult executionId="642ca4a8-2a2b-4605-bc36-b8cfcd90db00" testId="6730e3f8-ce10-ede9-2c51-ebefb9dc8715" testName="CreateFoodShouldReturnCreated" computerName="LAPTOP-GBMS4CB3" duration="00:00:01.2885640" startTime="2025-08-15T15:06:41.5587700+03:00" endTime="2025-08-15T15:06:42.8472795+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="642ca4a8-2a2b-4605-bc36-b8cfcd90db00" />
+    <UnitTestResult executionId="39153833-8a40-46cb-8bab-04c646cb778c" testId="53a15f62-7fcf-2a72-765f-7b68c409d032" testName="EditTheTitleOfTheFoodCreated_ShouldReturnOk" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.0990800" startTime="2025-08-15T15:06:44.0193230+03:00" endTime="2025-08-15T15:06:44.1184024+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="39153833-8a40-46cb-8bab-04c646cb778c" />
+    <UnitTestResult executionId="db741725-5178-4930-876b-73ed8c4f8c06" testId="8b3fd480-1ea6-019b-2776-1f4335544719" testName="CreateFood_ShouldReturnCreated" computerName="LAPTOP-GBMS4CB3" duration="00:00:01.1707350" startTime="2025-08-15T15:06:42.8485250+03:00" endTime="2025-08-15T15:06:44.0192606+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db741725-5178-4930-876b-73ed8c4f8c06" />
+    <UnitTestResult executionId="2dd24cc3-4400-4bb3-97da-25d9a338eee7" testId="8eb37c15-998f-22f0-f99a-883917bd95b6" testName="EditNonExistingFood_ShouldReturnNotFound" computerName="LAPTOP-GBMS4CB3" duration="00:00:00.0807820" startTime="2025-08-15T15:06:44.3820352+03:00" endTime="2025-08-15T15:06:44.4628170+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2dd24cc3-4400-4bb3-97da-25d9a338eee7" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="CreateFood_ShouldReturnCreated" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="8b3fd480-1ea6-019b-2776-1f4335544719">
+      <Execution id="db741725-5178-4930-876b-73ed8c4f8c06" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="CreateFood_ShouldReturnCreated" />
+    </UnitTest>
+    <UnitTest name="DeleteFood_ShouldReturnNoContent" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="8fdbe4df-8ccf-ef43-3240-0282c70f083b">
+      <Execution id="a76041ce-3752-43b3-9780-85696f473b84" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="DeleteFood_ShouldReturnNoContent" />
+    </UnitTest>
+    <UnitTest name="CreateFood_WithoutRequiredField_ShouldReturnBadRequest" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="20fdbd80-457e-63ff-659a-22141c78437c">
+      <Execution id="6d602f36-a8e5-43a0-ac42-3c0c8972535b" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="CreateFood_WithoutRequiredField_ShouldReturnBadRequest" />
+    </UnitTest>
+    <UnitTest name="CreateFoodShouldReturnCreated" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="6730e3f8-ce10-ede9-2c51-ebefb9dc8715">
+      <Execution id="642ca4a8-2a2b-4605-bc36-b8cfcd90db00" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="CreateFoodShouldReturnCreated" />
+    </UnitTest>
+    <UnitTest name="DeleteNonExistingFood_ShouldReturnBadRequest" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="61be1564-71aa-5e42-131f-0ad111f9aea1">
+      <Execution id="e3754a8d-0b34-4c2e-ab64-e0f4206625ba" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="DeleteNonExistingFood_ShouldReturnBadRequest" />
+    </UnitTest>
+    <UnitTest name="EditNonExistingFood_ShouldReturnNotFound" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="8eb37c15-998f-22f0-f99a-883917bd95b6">
+      <Execution id="2dd24cc3-4400-4bb3-97da-25d9a338eee7" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="EditNonExistingFood_ShouldReturnNotFound" />
+    </UnitTest>
+    <UnitTest name="GetAllFoods_ShouldReturnOk" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="3f8150a7-1274-60e8-73c7-b3c0f7044cd0">
+      <Execution id="8b99102a-a888-4793-bee3-248f95814b9e" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="GetAllFoods_ShouldReturnOk" />
+    </UnitTest>
+    <UnitTest name="EditTheTitleOfTheFoodCreated_ShouldReturnOk" storage="c:\users\esung\source\repos\foody-clean\bin\debug\net8.0\foody.dll" id="53a15f62-7fcf-2a72-765f-7b68c409d032">
+      <Execution id="39153833-8a40-46cb-8bab-04c646cb778c" />
+      <TestMethod codeBase="C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll" adapterTypeName="executor://nunit3testexecutor/" className="Foody.FoodyTests" name="EditTheTitleOfTheFoodCreated_ShouldReturnOk" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="20fdbd80-457e-63ff-659a-22141c78437c" executionId="6d602f36-a8e5-43a0-ac42-3c0c8972535b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="61be1564-71aa-5e42-131f-0ad111f9aea1" executionId="e3754a8d-0b34-4c2e-ab64-e0f4206625ba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8fdbe4df-8ccf-ef43-3240-0282c70f083b" executionId="a76041ce-3752-43b3-9780-85696f473b84" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3f8150a7-1274-60e8-73c7-b3c0f7044cd0" executionId="8b99102a-a888-4793-bee3-248f95814b9e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6730e3f8-ce10-ede9-2c51-ebefb9dc8715" executionId="642ca4a8-2a2b-4605-bc36-b8cfcd90db00" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="53a15f62-7fcf-2a72-765f-7b68c409d032" executionId="39153833-8a40-46cb-8bab-04c646cb778c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8b3fd480-1ea6-019b-2776-1f4335544719" executionId="db741725-5178-4930-876b-73ed8c4f8c06" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8eb37c15-998f-22f0-f99a-883917bd95b6" executionId="2dd24cc3-4400-4bb3-97da-25d9a338eee7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="8" executed="8" passed="7" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
+Running all tests in C:\Users\esung\source\repos\Foody-clean\bin\Debug\net8.0\Foody.dll&#xD;
+   NUnit3TestExecutor discovered 8 of 8 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.5.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
