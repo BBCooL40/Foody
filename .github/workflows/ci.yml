@@ -5,8 +5,9 @@ on:
     branches: [ "main" ]
 
 env:
-  DOTNET_VERSION: "8.0.x"
   FOODY_API_BASE: ${{ vars.FOODY_API_BASE }}
+  FOODY_USERNAME: ${{ secrets.FOODY_USERNAME }}
+  FOODY_PASSWORD: ${{ secrets.FOODY_PASSWORD }}
 
 jobs:
   build-and-test:
@@ -15,10 +16,12 @@ jobs:
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🧰 Setup .NET
+      - name: 🧰 Setup .NET (8 & 9)
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: |
+            9.0.x
+            8.0.x
 
       - name: 📦 Restore packages
         run: dotnet restore
